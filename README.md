@@ -3,6 +3,8 @@
 > _"He went up on the mountain by himself to pray."_
 > — Matthew 14:23
 
+**[→ Try it live](https://eremia-opal.vercel.app/)**
+
 **Eremia** is a Bible reading plan tracker built for people who take their time in the Word seriously. No accounts required, no ads, no noise — just you, the Scripture, and a simple tool to help you stay faithful to the practice.
 
 The name comes from the Greek word for _solitude_ — the same word used to describe the places Jesus withdrew to pray.
@@ -29,7 +31,6 @@ Designed mobile-first as a Progressive Web App, but fully responsive — sidebar
 - Custom reading plan builder with book selection and duration presets
 - Full Navigators Bible Reading Plan (12 months × 25 days × 4 tracks)
 - Per-chapter and per-passage completion tracking
-- Streak counter to keep the habit going
 - Solitude Notes — a private journal for each passage you read
 - Fully offline after first load (PWA with service worker caching)
 - No account, no server, no data collection — everything stays on your device
@@ -55,7 +56,7 @@ No backend. No database. No authentication. The app is a static bundle — it ca
 You'll need Node.js 18 or later.
 
 ```bash
-git clone https://github.com/yourusername/eremia.git
+git clone https://github.com/hughyoon/eremia.git
 cd eremia
 npm install
 npm run dev
@@ -102,9 +103,7 @@ src/
 
 ## Installing as a mobile app (PWA)
 
-Once deployed to an HTTPS URL:
-
-**iPhone / iPad** — open in Safari → Share → Add to Home Screen
+**iPhone / iPad** — open [eremia-opal.vercel.app](https://eremia-opal.vercel.app/) in Safari → Share → Add to Home Screen
 
 **Android** — open in Chrome → three-dot menu → Add to Home Screen
 
