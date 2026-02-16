@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: #0E0E14;
+  color: #fff;
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Responsive layout helpers ── */
+/* Sidebar nav shown on desktop, hidden on mobile */
+.sidebar-nav { display: none; }
+.tab-bar-wrap { display: flex; }
+
+@media (min-width: 768px) {
+  .sidebar-nav  { display: flex; }
+  .tab-bar-wrap { display: none; }
+}
+
+/* Hide mobile-only header elements on desktop */
+@media (min-width: 768px) {
+  .mobile-header { display: none !important; }
+}
+
+/* Constrain content width on very wide screens */
+@media (min-width: 1400px) {
+  .screen-content { max-width: 860px; }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { display: none; }
+* { scrollbar-width: none; }
+
+/* ── Inputs ── */
+input, textarea, select {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  color: #fff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 14px 16px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+input:focus,
+textarea:focus {
+  border-color: rgba(108, 99, 255, 0.7);
+  background: rgba(108, 99, 255, 0.06);
+}
+
+textarea {
+  resize: none;
+  line-height: 1.65;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) opacity(0.3);
+}
+
+/* ── Utility classes ── */
+.ripple {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.ripple:active::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: inherit;
+}
+
+/* ── Book chips ── */
+.book-chip {
+  border: 1.5px solid rgba(255, 255, 255, 0.09);
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.book-chip.sel {
+  background: rgba(108, 99, 255, 0.25);
+  border-color: #6C63FF;
+  color: #c4c0ff;
+}
+
+/* ── Duration chips ── */
+.dur-chip {
+  border: 1.5px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 11px 8px;
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.15s;
+  text-align: center;
+}
+.dur-chip.sel {
+  background: rgba(108, 99, 255, 0.2);
+  border-color: #6C63FF;
+  color: #a89fff;
+}
+
+/* ── Chapter list item ── */
+.chapter-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  transition: opacity 0.1s;
+}
+.chapter-item:last-child { border-bottom: none; }
+.chapter-item:active { opacity: 0.6; }
+
+/* ── Tab bar buttons ── */
+.tab-bar-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  flex: 1;
+  padding: 10px 0 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.28);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.tab-bar-btn.active { color: #6C63FF; }
+
+/* ── Segment control buttons ── */
+.seg-btn {
+  flex: 1;
+  padding: 9px 4px;
+  background: none;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.35);
+  transition: all 0.15s;
+}
+.seg-btn.active {
+  background: rgba(108, 99, 255, 0.25);
+  color: #a89fff;
+}
+
+/* ── Book accordion row ── */
+.book-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.book-row:active { background: rgba(255, 255, 255, 0.03); }
+
+/* ── Animations ── */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.slide-up { animation: slideUp 0.3s ease both; }
+.fade-in  { animation: fadeIn 0.2s ease both; }
