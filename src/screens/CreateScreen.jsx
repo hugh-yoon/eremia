@@ -151,13 +151,18 @@ export default function CreateScreen({ onCreated, onBack }) {
           </div>
         </div>
 
+        {/* Spacer to prevent content from hiding under sticky button */}
+        <div style={{ height: 24 }} />
+
         <button
           style={{
             ...primaryBtn,
             position: 'sticky',
-            bottom: 0,
+            bottom: 'calc(env(safe-area-inset-bottom, 0px) + 16px)',
             marginTop: 'auto',
-            boxShadow: '0 -4px 20px rgba(14,14,20,0.8), 0 4px 20px rgba(108,99,255,0.25)',
+            zIndex: 100,
+            boxShadow: '0 -8px 24px rgba(14,14,20,0.9), 0 4px 20px rgba(108,99,255,0.4)',
+            backdropFilter: 'blur(10px)',
           }}
           className="ripple"
           onClick={() => {

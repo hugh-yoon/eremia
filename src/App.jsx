@@ -175,7 +175,7 @@ export default function App() {
   // ── Render ───────────────────────────────────────────────────────────────
 
   return (
-    <div style={styles.shell}>
+    <div style={styles.shell} className="app-shell">
       <Toast message={toast} />
 
       {journalTarget && (
@@ -275,10 +275,10 @@ export default function App() {
 }
 
 const styles = {
-  // Full-bleed shell — row on desktop, column on mobile
+  // Full-bleed shell — column on mobile, row on desktop
   shell: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     height: '100vh',
     width: '100%',
     background: '#0E0E14',
@@ -338,6 +338,7 @@ const styles = {
     flex: 1,
     overflowY: 'auto',
     overflowX: 'hidden',
+    WebkitOverflowScrolling: 'touch',
     background: 'linear-gradient(160deg, #13111f 0%, #0E0E14 55%)',
     width: '100%',
   },

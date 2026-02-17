@@ -21,6 +21,7 @@ body {
   overscroll-behavior: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ── Responsive layout helpers ── */
@@ -28,7 +29,9 @@ body {
 .sidebar-nav { display: none; }
 .tab-bar-wrap { display: flex; }
 
+/* Shell switches to row layout on desktop */
 @media (min-width: 768px) {
+  .app-shell { flex-direction: row !important; }
   .sidebar-nav  { display: flex; }
   .tab-bar-wrap { display: none; }
 }
