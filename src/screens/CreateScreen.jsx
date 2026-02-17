@@ -130,6 +130,10 @@ export default function CreateScreen({ onCreated, onBack }) {
             Each month has 25 readings — free days to catch up or study deeper.
           </p>
 
+          <div style={{ textAlign:'center', fontSize:10, color:'rgba(255,255,255,0.15)', marginBottom:16 }}>
+            ↓ Scroll down to start
+          </div>
+
           <div>
             <label style={lbl}>Start at Month</label>
             <div style={{ display:'flex', flexWrap:'wrap', gap:6 }}>
@@ -147,7 +151,16 @@ export default function CreateScreen({ onCreated, onBack }) {
           </div>
         </div>
 
-        <button style={primaryBtn} className="ripple" onClick={() => {
+        <button
+          style={{
+            ...primaryBtn,
+            position: 'sticky',
+            bottom: 0,
+            marginTop: 'auto',
+            boxShadow: '0 -4px 20px rgba(14,14,20,0.8), 0 4px 20px rgba(108,99,255,0.25)',
+          }}
+          className="ripple"
+          onClick={() => {
           onCreated({
             id: Date.now().toString(),
             name: NAVIGATORS_PLAN.name,
@@ -304,7 +317,7 @@ export default function CreateScreen({ onCreated, onBack }) {
   )
 }
 
-const page = { padding:'clamp(18px, 3vw, 40px) clamp(18px, 4vw, 48px) 40px', display:'flex', flexDirection:'column', gap:18, minHeight:'100%', maxWidth:640 }
+const page = { padding:'clamp(18px, 3vw, 40px) clamp(18px, 4vw, 48px) calc(40px + env(safe-area-inset-bottom, 20px))', display:'flex', flexDirection:'column', gap:18, minHeight:'100%', maxWidth:640 }
 const backBtn = { background:'rgba(255,255,255,0.06)', border:'none', borderRadius:10, width:36, height:36, display:'flex', alignItems:'center', justifyContent:'center', cursor:'pointer' }
 const lbl = { display:'block', fontSize:11, fontWeight:700, letterSpacing:'0.08em', color:'rgba(255,255,255,0.35)', textTransform:'uppercase', marginBottom:8 }
 const primaryBtn = { width:'100%', background:'linear-gradient(135deg,#6C63FF,#9b95ff)', border:'none', borderRadius:16, color:'#fff', cursor:'pointer', fontFamily:"'Plus Jakarta Sans', sans-serif", fontSize:15, fontWeight:700, padding:'16px 24px', boxShadow:'0 4px 20px rgba(108,99,255,0.25)' }
