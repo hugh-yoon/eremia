@@ -16,6 +16,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      minify: false, // avoids Vercel build hang from workbox terser
       includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
       manifest: {
         name: 'Eremia — Bible Reading Tracker',
@@ -48,8 +49,6 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
-        // Avoid Vercel/CI build hang: skip minifying the service worker (terser can leave promises unresolved)
-        minify: false,
         runtimeCaching: [
           {
             // Cache Google Fonts
