@@ -47,8 +47,9 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // Cache everything for offline use
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        // Avoid Vercel/CI build hang: skip minifying the service worker (terser can leave promises unresolved)
+        minify: false,
         runtimeCaching: [
           {
             // Cache Google Fonts
