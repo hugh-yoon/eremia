@@ -210,10 +210,77 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
 
 .slide-up { animation: slideUp 0.3s ease both; }
+.scripture-sheet-down { animation: slideDown 0.3s ease both; }
 .fade-in  { animation: fadeIn 0.2s ease both; }
+
+/* ── Scripture Text Formatting ── */
+.scripture-container {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+/* Remove bullets/numbers from API/SDK list markup (e.g. Matthew 1 genealogy) */
+.scripture-container ul,
+.scripture-container ol {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.scripture-container li {
+  list-style: none;
+  display: block;
+  margin-bottom: 0.5em;
+}
+.scripture-container li::before {
+  content: none;
+}
+
+/* Paragraph styling from the API */
+.scripture-container .p {
+  display: block;
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+/* Verse numbering styling – each verse number stands out */
+.scripture-container .v {
+  display: inline;
+  font-size: 0.75em;
+  font-weight: 800;
+  color: #6C63FF;
+  vertical-align: super;
+  margin-right: 0.35em;
+  margin-left: 0.15em;
+  opacity: 0.95;
+  user-select: none;
+}
+
+/* Chapter numbers (if they appear) */
+.scripture-container .c {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Handling poetical lines (common in Psalms/Prophets) */
+.scripture-container .q1, 
+.scripture-container .q2 {
+  display: block;
+  padding-left: 1rem;
+  margin-bottom: 0.5rem;
+}

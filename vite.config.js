@@ -1,8 +1,17 @@
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
+const __dirname = fileURLToPath(new URL('.', import.meta.url))
+
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@youversion/platform-react-ui/dist/tailwind.css': path.resolve(__dirname, 'node_modules/@youversion/platform-react-ui/dist/tailwind.css'),
+    },
+  },
   plugins: [
     react(),
     VitePWA({

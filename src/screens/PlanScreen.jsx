@@ -192,19 +192,33 @@ export default function PlanScreen({ plan, onToggleChapter, onOpenNote, onDelete
             </div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {notedChapters.map(([key, note]) => (
-                <div key={key} style={noteCard} className="ripple" onClick={() => onOpenNote(plan.id, key)}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#6C63FF', textTransform: 'uppercase' }}>
-                      {key.replace(/-(\d+)$/, ' · Ch $1')}
-                    </span>
-                    <Icon name="chevronRight" size={14} color="rgba(255,255,255,0.2)" />
+              {notedChapters.map(([key, note]) => {
+                const lastDash = key.lastIndexOf('-')
+                const book = key.slice(0, lastDash)
+                const chapter = key.slice(lastDash + 1)
+                return (
+                  <div key={key} style={noteCard} className="ripple" onClick={() => onOpenNote(plan.id, key)}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                      <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#6C63FF', textTransform: 'uppercase' }}>
+                        {key.replace(/-(\d+)$/, ' · Ch $1')}
+                      </span>
+                      <Icon name="chevronRight" size={14} color="rgba(255,255,255,0.2)" />
+                    </div>
+                    <p style={{ fontSize: 13, lineHeight: 1.6, color: 'rgba(255,255,255,0.5)', fontStyle: 'italic' }}>
+                      {note.length > 110 ? note.slice(0, 110) + '…' : note}
+                    </p>
+                    <button
+                      style={{ ...scriptureBtn, marginTop: 10 }}
+                      onClick={e => {
+                        e.stopPropagation()
+                        setScripturePassage({ book, reference: chapter })
+                      }}
+                    >
+                      Scripture
+                    </button>
                   </div>
-                  <p style={{ fontSize: 13, lineHeight: 1.6, color: 'rgba(255,255,255,0.5)', fontStyle: 'italic' }}>
-                    {note.length > 110 ? note.slice(0, 110) + '…' : note}
-                  </p>
-                </div>
-              ))}
+                )
+              })}
             </div>
           )}
         </div>
