@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import CircleProgress from '../components/CircleProgress'
 import Icon from '../components/Icon'
+import ScriptureSheet from '../components/ScriptureSheet'
 import { todayStr } from '../utils'
 
 export default function PlanScreen({ plan, onToggleChapter, onOpenNote, onDelete, subTab = 'reading', onSubTabChange }) {
   const setSubTab = (v) => onSubTabChange?.(v)
   const [expandedBook, setExpandedBook] = useState(null)
+  const [scripturePassage, setScripturePassage] = useState(null)
 
   const total = plan.chapters.length
   const done = Object.keys(plan.completed || {}).length
@@ -149,6 +151,15 @@ export default function PlanScreen({ plan, onToggleChapter, onOpenNote, onDelete
                           </span>
                           {hasNote && <Icon name="edit" size={13} color="#6C63FF" />}
                           <button
+                            style={scriptureBtn}
+                            onClick={e => {
+                              e.stopPropagation()
+                              setScripturePassage({ book, chapter: ch.chapter, reference: ch.chapter.toString() })
+                            }}
+                          >
+                            Scripture
+                          </button>
+                          <button
                             style={noteBtn}
                             onClick={e => { e.stopPropagation(); onOpenNote(plan.id, ch.key) }}
                           >
@@ -198,6 +209,14 @@ export default function PlanScreen({ plan, onToggleChapter, onOpenNote, onDelete
           )}
         </div>
       )}
+
+      {/* Scripture modal */}
+      {scripturePassage && (
+        <ScriptureSheet
+          passage={scripturePassage}
+          onClose={() => setScripturePassage(null)}
+        />
+      )}
     </div>
   )
 }
@@ -217,6 +236,12 @@ const bookCard = {
 const noteBtn = {
   background: 'rgba(108,99,255,0.15)', border: '1px solid rgba(108,99,255,0.28)',
   borderRadius: 8, color: '#a89fff', cursor: 'pointer',
+  fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 11, fontWeight: 700,
+  padding: '5px 11px', flexShrink: 0,
+}
+const scriptureBtn = {
+  background: 'rgba(16,185,129,0.12)', border: '1px solid rgba(16,185,129,0.25)',
+  borderRadius: 8, color: '#34d399', cursor: 'pointer',
   fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 11, fontWeight: 700,
   padding: '5px 11px', flexShrink: 0,
 }

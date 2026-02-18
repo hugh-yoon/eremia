@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import CircleProgress from '../components/CircleProgress'
 import Icon from '../components/Icon'
+import ScriptureSheet from '../components/ScriptureSheet'
 import { todayStr } from '../utils'
 
 const TRACK_COLORS = ['#6C63FF', '#f59e0b', '#10b981', '#f43f5e']
@@ -24,6 +25,7 @@ export default function MultiTrackScreen({ plan, onTogglePassage, onOpenNote, on
     if (v === 'notes') onSubTabChange?.('notes')
     else onSubTabChange?.('plan')
   }
+  const [scripturePassage, setScripturePassage] = useState(null)
 
   const monthData = plan.scheduleData  // NAVIGATORS_PLAN.months
   const currentMonth = plan.currentMonth || 1
@@ -205,6 +207,15 @@ export default function MultiTrackScreen({ plan, onTogglePassage, onOpenNote, on
                       {hasNote && <Icon name="edit" size={14} color={color} />}
                     </div>
                     <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setScripturePassage({ book: passage.t, reference: passage.p })
+                      }}
+                      style={scriptureBtn}
+                    >
+                      Scripture
+                    </button>
+                    <button
                       onClick={() => onOpenNote(plan.id, key, `${passage.t} ${passage.p}`)}
                       style={{ ...noteBtn, borderColor: isDone ? 'rgba(255,255,255,0.1)' : border, color: isDone ? 'rgba(255,255,255,0.25)' : color }}
                     >
@@ -339,6 +350,14 @@ export default function MultiTrackScreen({ plan, onTogglePassage, onOpenNote, on
           <Icon name="trash" size={14} color="#ff6b6b" /> Delete Plan
         </button>
       )}
+
+      {/* Scripture modal */}
+      {scripturePassage && (
+        <ScriptureSheet
+          passage={scripturePassage}
+          onClose={() => setScripturePassage(null)}
+        />
+      )}
     </div>
   )
 }
@@ -355,6 +374,12 @@ const noteBtn = {
   borderRadius: 8, cursor: 'pointer',
   fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 11, fontWeight: 700,
   padding: '5px 12px', width: '100%',
+}
+const scriptureBtn = {
+  background: 'rgba(16,185,129,0.12)', border: '1px solid rgba(16,185,129,0.25)',
+  borderRadius: 8, color: '#34d399', cursor: 'pointer',
+  fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 11, fontWeight: 700,
+  padding: '5px 12px', marginRight: 6, flexShrink: 0,
 }
 const deleteBtn = {
   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
