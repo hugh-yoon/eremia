@@ -350,7 +350,10 @@ const styles = {
     backdropFilter: 'blur(20px)',
     borderTop: '1px solid rgba(255,255,255,0.06)',
     paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+    minHeight: 56,
+    display: 'flex',
     flexShrink: 0,
+    zIndex: 50,
   },
   fab: {
     width: 46, height: 46, borderRadius: 14,

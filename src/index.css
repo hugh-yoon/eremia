@@ -46,6 +46,13 @@ body {
   .screen-content { max-width: 860px; }
 }
 
+/* Mobile safe area handling - ensure tab bar is always accessible */
+@media (max-width: 767px) {
+  .screen-content {
+    padding-bottom: 8px; /* Small padding to prevent content from being hidden under tab bar */
+  }
+}
+
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { display: none; }
 * { scrollbar-width: none; }

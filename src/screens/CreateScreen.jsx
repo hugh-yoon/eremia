@@ -22,11 +22,31 @@ export default function CreateScreen({ onCreated, onBack }) {
     return (
       <div style={page} className="slide-up">
         <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', paddingTop:10, marginBottom:8 }}>
-          <button style={backBtn} onClick={onBack}>
+          <button style={backBtn} title="Back" onClick={onBack}>
             <Icon name="chevronLeft" size={20} color="rgba(255,255,255,0.7)" />
           </button>
           <span style={{ fontSize:17, fontWeight:800, color:'#fff' }}>New Plan</span>
-          <div style={{ width:36 }} />
+          <button 
+            onClick={onBack}
+            style={{
+              background: 'transparent',
+              border: '1.5px solid rgba(255,255,255,0.2)',
+              borderRadius: 8,
+              padding: '6px 12px',
+              fontSize: 11,
+              fontWeight: 700,
+              color: 'rgba(255,255,255,0.5)',
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+            }}
+            className="ripple"
+            title="Go back to plans"
+          >
+            Cancel
+          </button>
         </div>
 
         <p style={{ fontSize:13, color:'rgba(255,255,255,0.28)', textAlign:'center', fontStyle:'italic', lineHeight:1.7 }}>
@@ -90,11 +110,31 @@ export default function CreateScreen({ onCreated, onBack }) {
     return (
       <div style={page} className="slide-up">
         <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', paddingTop:10, marginBottom:8 }}>
-          <button style={backBtn} onClick={() => setPlanType(null)}>
+          <button style={backBtn} title="Back" onClick={() => setPlanType(null)}>
             <Icon name="chevronLeft" size={20} color="rgba(255,255,255,0.7)" />
           </button>
           <span style={{ fontSize:17, fontWeight:800, color:'#fff' }}>Navigators Plan</span>
-          <div style={{ width:36 }} />
+          <button 
+            onClick={onBack}
+            style={{
+              background: 'transparent',
+              border: '1.5px solid rgba(255,255,255,0.2)',
+              borderRadius: 8,
+              padding: '6px 12px',
+              fontSize: 11,
+              fontWeight: 700,
+              color: 'rgba(255,255,255,0.5)',
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+            }}
+            className="ripple"
+            title="Go back to plans"
+          >
+            Cancel
+          </button>
         </div>
 
         <div style={{ background:'rgba(108,99,255,0.08)', border:'1.5px solid rgba(108,99,255,0.18)', borderRadius:20, padding:18 }}>
@@ -206,11 +246,31 @@ export default function CreateScreen({ onCreated, onBack }) {
   return (
     <div style={page} className="slide-up">
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', paddingTop:10, marginBottom:-4 }}>
-        <button style={backBtn} onClick={() => step === 1 ? setPlanType(null) : setStep(1)}>
+        <button style={backBtn} title="Back" onClick={() => step === 1 ? setPlanType(null) : setStep(1)}>
           <Icon name="chevronLeft" size={20} color="rgba(255,255,255,0.7)" />
         </button>
         <span style={{ fontSize:17, fontWeight:800, color:'#fff' }}>{step === 1 ? 'Plan Details' : 'Select Books'}</span>
-        <div style={{ width:36 }} />
+        <button 
+          onClick={() => setPlanType(null)}
+          style={{
+            background: 'transparent',
+            border: '1.5px solid rgba(255,255,255,0.2)',
+            borderRadius: 8,
+            padding: '6px 12px',
+            fontSize: 11,
+            fontWeight: 700,
+            color: 'rgba(255,255,255,0.5)',
+            cursor: 'pointer',
+            transition: 'all 0.2s',
+            fontFamily: "'Plus Jakarta Sans', sans-serif",
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
+          }}
+          className="ripple"
+          title="Go back to plan selection"
+        >
+          Cancel
+        </button>
       </div>
 
       <div style={{ display:'flex', gap:6 }}>
